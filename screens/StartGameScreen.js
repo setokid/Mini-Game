@@ -1,9 +1,12 @@
 import { useState } from "react";
-import { View, TextInput, StyleSheet, Alert } from "react-native";
+import { View, TextInput, StyleSheet, Alert, Text } from "react-native";
 
 import Colors from "../constants/colors";
 
 import CustomButton from "../components/ui/CustomButton";
+import Title from "../components/ui/Title";
+import Card from "../components/ui/Card";
+import InstructionText from "../components/ui/InstructionText";
 
 function StartGameScreen({ onPickNumber }) {
   const [numberInput, setNumberInput] = useState("");
@@ -32,22 +35,26 @@ function StartGameScreen({ onPickNumber }) {
   }
 
   return (
-    <View style={styles.inputContainer}>
-      <TextInput
-        style={styles.numberInput}
-        maxLength={2}
-        keyboardType="number-pad"
-        value={numberInput}
-        onChangeText={numberInputHandler}
-      />
-      <View style={styles.buttonsContainer}>
-        <View style={styles.buttonContainer}>
-          <CustomButton onPress={resetInputHandler}>Reset</CustomButton>
+    <View style={styles.screenContainer}>
+      <Title>Guess My Number</Title>
+      <Card>
+        <InstructionText>Enter a Number</InstructionText>
+        <TextInput
+          style={styles.numberInput}
+          maxLength={2}
+          keyboardType="number-pad"
+          value={numberInput}
+          onChangeText={numberInputHandler}
+        />
+        <View style={styles.buttonsContainer}>
+          <View style={styles.buttonContainer}>
+            <CustomButton onPress={resetInputHandler}>Reset</CustomButton>
+          </View>
+          <View style={styles.buttonContainer}>
+            <CustomButton onPress={confirmInputHandler}>Confirm</CustomButton>
+          </View>
         </View>
-        <View style={styles.buttonContainer}>
-          <CustomButton onPress={confirmInputHandler}>Confirm</CustomButton>
-        </View>
-      </View>
+      </Card>
     </View>
   );
 }
@@ -55,19 +62,10 @@ function StartGameScreen({ onPickNumber }) {
 export default StartGameScreen;
 
 const styles = StyleSheet.create({
-  inputContainer: {
-    justifyContent: "center",
+  screenContainer: {
+    flex: 1,
+    marginTop: 75,
     alignItems: "center",
-    padding: 16,
-    marginTop: 100,
-    marginHorizontal: 24,
-    backgroundColor: Colors.pimary3,
-    borderRadius: 8,
-    elevation: 4,
-    shadowColor: "black",
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 6,
-    shadowOpacity: 0.25,
   },
   numberInput: {
     height: 50,
