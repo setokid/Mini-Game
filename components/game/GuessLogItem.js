@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
     padding: 12,
     marginVertical: 8,
     backgroundColor: Colors.accent,
+    flexDirection: "row",
     justifyContent: "space-between",
     width: "100%",
     elevation: 4,
